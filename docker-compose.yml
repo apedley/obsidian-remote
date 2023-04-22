@@ -1,0 +1,22 @@
+services:
+  obsidian:
+    image: 'obsidian-remote:latest'
+    container_name: obsidian-remote
+    restart: unless-stopped
+    cap_add:
+      - IPC_LOCK
+    security_opt:
+      - seccomp:unconfined #optional
+    ports:
+      - 8642:3000
+    volumes:
+      - ./vaults:/vaults
+      - ./config:/config
+    environment:
+      - PUID=1000
+      - PGID=1001
+      - TZ=America/Chicago
+      - FM_HOME=/vaults
+      - CUSTOM_PORT=3000
+      - CUSTOM_HTTPS_PORT=3001
+    shm_size: "1gb"
