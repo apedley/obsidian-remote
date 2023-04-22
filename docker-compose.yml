@@ -7,8 +7,10 @@ services:
       - IPC_LOCK
     security_opt:
       - seccomp:unconfined #optional
+    shm_size: "1gb"
     ports:
-      - 8642:3000
+      - 3000:3000
+      - 3001:3001
     volumes:
       - ./vaults:/vaults
       - ./config:/config
@@ -19,4 +21,3 @@ services:
       - FM_HOME=/vaults
       - CUSTOM_PORT=3000
       - CUSTOM_HTTPS_PORT=3001
-    shm_size: "1gb"
